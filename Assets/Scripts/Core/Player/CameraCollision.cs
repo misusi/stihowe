@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.PlayerCamera
+namespace Core.Player
 {
 
     public class CameraCollision : MonoBehaviour
