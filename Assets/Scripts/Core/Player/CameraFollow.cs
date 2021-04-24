@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Core.Player
 {
+    enum MouseButton { Left, Right, Middle }
 
     public class CameraFollow : MonoBehaviour
     {
@@ -52,6 +53,13 @@ namespace Core.Player
             Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
             transform.rotation = localRotation;
 
+            // Snap camera behind player on middle click(?)
+            if (Input.GetMouseButton((int)MouseButton.Middle))
+            {
+                // Reset camera behind player
+                // NOT the rotation, just move the position
+                transform.rotation = CameraFollowObj.transform.rotation;
+            }
 
         }
 
