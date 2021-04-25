@@ -7,28 +7,28 @@ namespace Core.Player
     public class PlayerController : MonoBehaviour
     {
         [Header("Movement")]
-        [SerializeField] float speed = 6f;
-        [SerializeField] float turnSmoothTime = 0.1f;
-        [SerializeField] Transform cameraTransform;
-        float turnSmoothVelocity;
-        CharacterController charController;
+        [SerializeField] float _speed = 6f;
+        [SerializeField] float _turnSmoothTime = 0.1f;
+        [SerializeField] Transform _camTrans;
+        float _turnSmoothVel;
+        CharacterController _controller;
 
         [Header("Jumping")]
-        [SerializeField] float jumpSpeed = 3f;
-        [SerializeField] float gravity = -9.81f;
-        float vSpeed = 0f;
+        [SerializeField] float _jumpSpeed = 3f;
+        [SerializeField] float _gravity = -9.81f;
+        float _vSpeed = 0f;
 
         private void Start()
         {
-            charController = GetComponent<CharacterController>();
+            _controller = GetComponent<CharacterController>();
         }
         private void Update()
         {
             Vector3 planarDirection = GetInputXZ();
             Vector3 moveDir = DampenRotation(planarDirection);
             moveDir = ApplyVerticalForces(moveDir);
-            charController.Move(moveDir.normalized * speed * Time.deltaTime);
-            print(charController.isGrounded);
+            _controller.Move(moveDir.normalized * _speed * Time.deltaTime);
+            print(_controller.isGrounded);
         }
 
         Vector3 GetInputXZ()
@@ -44,9 +44,9 @@ namespace Core.Player
             if (dirVec.magnitude >= 0.1f)
             {
                 // ROTATION
-                float targetAngle = Mathf.Atan2(dirVec.x, dirVec.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
+                float targetAngle = Mathf.Atan2(dirVec.x, dirVec.z) * Mathf.Rad2Deg + _camTrans.eulerAngles.y;
                 // Smooth the rotation
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVel, _turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
@@ -56,17 +56,17 @@ namespace Core.Player
 
         Vector3 ApplyVerticalForces(Vector3 dirVec)
         {
-            if (charController.isGrounded)
+            if (_controller.isGrounded)
             {
-                vSpeed = 0f;
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    vSpeed = jumpSpeed;
-                }
+                _vSpeed = 0f;
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _vSpeed = _jumpSpeed;
             }
 
-            vSpeed -= gravity * Time.deltaTime;
-            dirVec.y = vSpeed;
+            _vSpeed -= _gravity * Time.deltaTime;
+            dirVec.y = _vSpeed;
             return dirVec;
         }
     }
