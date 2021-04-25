@@ -8,44 +8,43 @@ namespace Core.Player
         [SerializeField] float speed = 6f;
         [SerializeField] float turnSmoothTime = 0.1f;
         float turnSmoothVelocity;
-        CharacterController controller;
-        Transform cameraTransform;
+        CharacterController charController;
+        [SerializeField] Transform cameraTransform;
+        float gravity = 9.81f;
+        float vSpeed = 0f;
 
         private void Start()
         {
-            controller = GetComponent<CharacterController>();
-            if (controller == null)
-            {
-                Debug.LogError("No CharacterController component found on object.");
-            }
-            cameraTransform = Camera.main.transform;
+            charController = GetComponent<CharacterController>();
         }
         private void Update()
         {
-
-
             float movementHoriz = Input.GetAxisRaw("Horizontal");
             float movementVert = Input.GetAxisRaw("Vertical");
 
             Vector3 direction = new Vector3(movementHoriz, 0f, movementVert).normalized;
             if (direction.magnitude >= 0.1f)
             {
-                // Find angle character should face
+                // ROTATION
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                // Smooth the rotation
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y,targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                // print("Before gravity: " + moveDir);
-                // moveDir += GetGravityEffect();
-                // print("After gravity: " + moveDir);
-                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                charController.Move(moveDir.normalized * speed * Time.deltaTime);
+                // BUGFIX:
+                // HOLY FUCK. Character floating above ground due to char-controller.
+                // 1. Don't have 2 colliders, c.c. already has a collider.
+                // 2. ACTUALLY SET the shape of the c.c. collider correctly (above ground).
+                // 3. Reduce skin width variable to prevent char from being pushed up.
             }
+
         }
 
-        Vector3 GetGravityEffect()
+        void ApplyGravity()
         {
-            return controller.isGrounded ? Vector3.zero : Physics.gravity;
+
         }
     }
 }
