@@ -335,11 +335,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4275d80d375034cb64ef219e2bf359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 1
-  maxDistance: 3
-  smooth: 5
-  dollyDirAdjusted: {x: 0, y: 0, z: 0}
-  distance: 0
+  _minDistance: 1
+  _maxDistance: 3
+  _movementSmooth: 5
+  _dollyDirAdjusted: {x: 0, y: 0, z: 0}
+  _distance: 0
 --- !u!1 &1938913998
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +630,10 @@ PrefabInstance:
       value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 8000624014043552433, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
+      propertyPath: _camFollowObj
+      value: 
+      objectReference: {fileID: 8494874970855338239}
+    - target: {fileID: 8000624014043552433, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
       propertyPath: CameraFollowObj
       value: 
       objectReference: {fileID: 8494874970855338239}
@@ -685,11 +689,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f25f90342802004b8efedafc39db9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  turnSmoothTime: 0.1
-  cameraTransform: {fileID: 1201650093}
-  jumpHeight: 1
-  gravity: 9.81
+  _speed: 6
+  _turnSmoothTime: 0.1
+  _camTrans: {fileID: 1201650093}
+  _jumpSpeed: 3
+  _gravity: 9.81
+  _doubleJumpMultiplier: 0.75
+  _isOnGround: 0
 --- !u!143 &8494874970990655005
 CharacterController:
   m_ObjectHideFlags: 0

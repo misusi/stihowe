@@ -7,7 +7,8 @@ namespace Core.Player
     public class PlayerController : MonoBehaviour
     {
         [Header("Movement")]
-        [SerializeField] float _speed = 6f;
+        [SerializeField] float _walkSpeed = 6f;
+        [SerializeField] float _sprintSpeed = 9f;
         [SerializeField] float _turnSmoothTime = 0.1f;
         [SerializeField] Transform _camTrans;
         float _turnSmoothVel;
@@ -15,8 +16,11 @@ namespace Core.Player
 
         [Header("Jumping")]
         [SerializeField] float _jumpSpeed = 3f;
-        [SerializeField] float _gravity = -9.81f;
+        [SerializeField] float _gravity = 9.81f;
         float _vSpeed = 0f;
+        private bool _canDoubleJump = false;
+        [SerializeField] float _doubleJumpMultiplier = 0.75f;
+        public bool _isOnGround;
 
         private void Start()
         {
@@ -24,26 +28,51 @@ namespace Core.Player
         }
         private void Update()
         {
-            Vector3 planarDirection = GetInputXZ();
+            Vector3 planarDirection = ApplyHorizontalForces();
             Vector3 moveDir = DampenRotation(planarDirection);
             moveDir = ApplyVerticalForces(moveDir);
-            _controller.Move(moveDir.normalized * _speed * Time.deltaTime);
-            print(_controller.isGrounded);
+
+            float currentSpeed = Input.GetKeyDown(KeyCode.LeftShift) ? _sprintSpeed : _walkSpeed;
+            _controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
         }
 
-        Vector3 GetInputXZ()
+        Vector3 ApplyHorizontalForces()
         {
             float x = Input.GetAxisRaw("Horizontal");
             float z = Input.GetAxisRaw("Vertical");
             return new Vector3(x, 0f, z).normalized;
-
         }
+
+        Vector3 ApplyVerticalForces(Vector3 dirVec)
+        {
+            if (_controller.isGrounded)
+            {
+                _canDoubleJump = true;
+                _vSpeed = 0f;
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    _vSpeed = _jumpSpeed;
+                }
+            }
+            else
+            {
+                if(Input.GetKeyDown(KeyCode.Space) && _canDoubleJump)
+                {
+                    _vSpeed = _jumpSpeed * _doubleJumpMultiplier;
+                    _canDoubleJump = false;
+                }
+            }
+
+            _vSpeed -= _gravity * Time.deltaTime;
+            dirVec.y = _vSpeed;
+            return dirVec;
+        }
+
         Vector3 DampenRotation(Vector3 dirVec)
         {
             Vector3 moveDir = Vector3.zero;
             if (dirVec.magnitude >= 0.1f)
             {
-                // ROTATION
                 float targetAngle = Mathf.Atan2(dirVec.x, dirVec.z) * Mathf.Rad2Deg + _camTrans.eulerAngles.y;
                 // Smooth the rotation
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVel, _turnSmoothTime);
@@ -53,27 +82,13 @@ namespace Core.Player
             }
             return moveDir;
         }
-
-        Vector3 ApplyVerticalForces(Vector3 dirVec)
-        {
-            if (_controller.isGrounded)
-            {
-                _vSpeed = 0f;
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _vSpeed = _jumpSpeed;
-            }
-
-            _vSpeed -= _gravity * Time.deltaTime;
-            dirVec.y = _vSpeed;
-            return dirVec;
-        }
     }
 }
 
 // BUGFIX:
-// HOLY FUCK. Character floating above ground due to char-controller.
-// 1. Don't have 2 colliders, c.c. already has a collider.
-// 2. ACTUALLY SET the shape of the c.c. collider correctly (above ground).
-// 3. Reduce skin width variable to prevent char from being pushed up.
+// 1. HOLY FUCK. Character floating above ground due to char-controller.
+//      1. Don't have 2 colliders, c.c. already has a collider.
+//      2. ACTUALLY SET the shape of the c.c. collider correctly (above ground).
+//      3. Reduce skin width variable to prevent char from being pushed up.
+// 2. Character blasts off into sky like jimmy nuttrin
+//      1. Pay attention to sign on gravity in inspector.
