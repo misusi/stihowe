@@ -1,0 +1,14 @@
+Projectile Textures
+
+Photoshop Steps:
+	1. Open UV image that was exported from Blender
+	2. Create black background behind UV
+	3. Lock the UV and background layers
+	4. Create new top layer to paint on.
+	5. Use brush, eraser, and smudge tool to work on the top half of the UV mesh.
+	6. When satisfied, duplicate with Ctrl+J. Flip w/ Edit > Transform > Flip vertical. Shift + down to move it down appropriately.
+	7. Select those 2 layers, Ctrl + E to merge.
+	8. Double click layer > Tick outer glow.
+	9. Edit the outer glow until satisfied. Maybe: increase size, lower opacity, blend mode = screen...
+	10. Disable the black background and UV layers (leaving only painted layer).
+	11. Export/Save as PNG and import into Unity.
