@@ -1,9 +1,18 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace STIHOWE.Combat.Projectiles
 {
-    private void OnDestroy()
+    public class Bullet : MonoBehaviour
     {
-        print(gameObject.name + " was destroyed.");
+        private void OnCollisionEnter(Collision other)
+        {
+            // TODO: Play destroy bullet animation
+            print(name + " collided with " + other.transform.name);
+            Destroy(gameObject);
+        }
+        private void OnDestroy()
+        {
+            //print(gameObject.name + " was destroyed.");
+        }
     }
 }

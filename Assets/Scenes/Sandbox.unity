@@ -123,53 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &901958865 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3925353727243542631, guid: 9839d7a391081424bb384066bce00799, type: 3}
-  m_PrefabInstance: {fileID: 7415849461867854415}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &901958866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901958865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9b81c5030dd8f44db1b6494dc77ea22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _firePoint: {fileID: 7415849461867854416}
-  _vfx:
-  - {fileID: 2676392351402184733, guid: 1f5c4250fa946874699a33a99847d560, type: 3}
 --- !u!4 &1201650093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8000624014043552432, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
   m_PrefabInstance: {fileID: 8000624014347115370}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1774624524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8000624012882871398, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
-  m_PrefabInstance: {fileID: 8000624014347115370}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1774624528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774624524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb4275d80d375034cb64ef219e2bf359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minDistance: 1
-  _maxDistance: 3
-  _movementSmooth: 5
-  _dollyDirAdjusted: {x: 0, y: 0, z: 0}
-  _distance: 0
 --- !u!1001 &2861061266098531560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235,11 +193,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1371829924048309325, guid: 9839d7a391081424bb384066bce00799, type: 3}
-      propertyPath: _sprintSpeed
-      value: 13.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1371829924048309325, guid: 9839d7a391081424bb384066bce00799, type: 3}
-      propertyPath: _cameraBaseTransform
+      propertyPath: m_cameraBaseTransform
       value: 
       objectReference: {fileID: 1201650093}
     - target: {fileID: 3925353727243542631, guid: 9839d7a391081424bb384066bce00799, type: 3}
@@ -292,11 +246,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9839d7a391081424bb384066bce00799, type: 3}
---- !u!1 &7415849461867854416 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4643253855586459040, guid: 9839d7a391081424bb384066bce00799, type: 3}
-  m_PrefabInstance: {fileID: 7415849461867854415}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8000624014347115370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -349,21 +298,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8000624014043552433, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
-      propertyPath: clampAngle
-      value: 67
-      objectReference: {fileID: 0}
-    - target: {fileID: 8000624014043552433, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
-      propertyPath: _camFollowObj
+      propertyPath: m_camFollowObj
       value: 
       objectReference: {fileID: 8494874970855338239}
-    - target: {fileID: 8000624014043552433, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
-      propertyPath: CameraFollowObj
-      value: 
-      objectReference: {fileID: 8494874970855338239}
-    - target: {fileID: 8000624014043552433, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
-      propertyPath: inputSensitivity
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 8000624014043552435, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
       propertyPath: m_Name
       value: CameraBase

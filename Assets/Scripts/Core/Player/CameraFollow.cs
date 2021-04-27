@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Core.Player
+namespace STIHOWE.Core.Player
 {
     enum MouseButton { Left, Right, Middle }
 

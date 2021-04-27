@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using STIHOWE.Combat.Projectiles;
 
-namespace Core.Player
+namespace STIHOWE.Core.Player
 {
 
     public class PlayerController : MonoBehaviour
@@ -33,6 +34,12 @@ namespace Core.Player
 
             float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? m_sprintSpeed : m_walkSpeed;
             m_controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+
+            // TODO: Remove this.
+            if (Input.GetMouseButtonDown(0))
+            {
+                GetComponent<BulletSpawner>().Spawn();
+            }
         }
 
         Vector3 ApplyHorizontalForces()
@@ -55,7 +62,7 @@ namespace Core.Player
             }
             else
             {
-                if(Input.GetKeyDown(KeyCode.Space) && m_canDoubleJump)
+                if (Input.GetKeyDown(KeyCode.Space) && m_canDoubleJump)
                 {
                     m_vSpeed = m_jumpSpeed * m_doubleJumpMultiplier;
                     m_canDoubleJump = false;

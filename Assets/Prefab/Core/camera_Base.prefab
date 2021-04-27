@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8000624012882871397}
   - component: {fileID: 8000624012882871396}
   - component: {fileID: 8000624012882871399}
+  - component: {fileID: 1774624528}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -83,6 +84,23 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8000624012882871398}
   m_Enabled: 1
+--- !u!114 &1774624528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000624012882871398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4275d80d375034cb64ef219e2bf359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_minDistance: 1
+  m_maxDistance: 3
+  m_movementSmooth: 5
+  m_dollyDirAdjusted: {x: 0, y: 0, z: 0}
+  m_distance: 0
 --- !u!1 &8000624014043552435
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +112,7 @@ GameObject:
   - component: {fileID: 8000624014043552432}
   - component: {fileID: 8000624014043552433}
   m_Layer: 0
-  m_Name: CameraBase
+  m_Name: camera_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,9 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3388ad949a424683c688513e3ec7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraMoveSpeed: 120
-  CameraFollowObj: {fileID: 0}
-  clampAngle: 80
-  inputSensitivity: 150
-  invertHoriz: 0
-  invertVert: 0
+  m_camMoveSpeed: 120
+  m_camFollowObj: {fileID: 0}
+  m_clampAngle: 67
+  m_inputSensitivity: 150
+  m_invertHoriz: 0
+  m_invertVert: 0
