@@ -9,14 +9,14 @@ namespace Core.Player
     public class CameraFollow : MonoBehaviour
     {
 
-        [SerializeField] float _camMoveSpeed = 120.0f;
-        [SerializeField] GameObject _camFollowObj;
-        [SerializeField] float _clampAngle = 67.0f;
-        [SerializeField] float _inputSensitivity = 150.0f;
-        [SerializeField] bool _invertHoriz;
-        [SerializeField] bool _invertVert;
-        float _rotY = 0.0f;
-        float _rotX = 0.0f;
+        [SerializeField] float m_camMoveSpeed = 120.0f;
+        [SerializeField] GameObject m_camFollowObj;
+        [SerializeField] float m_clampAngle = 67.0f;
+        [SerializeField] float m_inputSensitivity = 150.0f;
+        [SerializeField] bool m_invertHoriz;
+        [SerializeField] bool m_invertVert;
+        float m_rotY = 0.0f;
+        float m_rotX = 0.0f;
 
 
 
@@ -24,8 +24,8 @@ namespace Core.Player
         void Start()
         {
             Vector3 rot = transform.localRotation.eulerAngles;
-            _rotY = rot.y;
-            _rotX = rot.x;
+            m_rotY = rot.y;
+            m_rotX = rot.x;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -42,15 +42,15 @@ namespace Core.Player
             float finalInputX = inputX + mouseX;
             float finalInputZ = inputZ + mouseY;
 
-            if (_invertHoriz) finalInputX *= -1;
-            if (!_invertVert) finalInputZ *= -1;
+            if (m_invertHoriz) finalInputX *= -1;
+            if (!m_invertVert) finalInputZ *= -1;
 
-            _rotY += finalInputX * _inputSensitivity * Time.deltaTime;
-            _rotX += finalInputZ * _inputSensitivity * Time.deltaTime;
+            m_rotY += finalInputX * m_inputSensitivity * Time.deltaTime;
+            m_rotX += finalInputZ * m_inputSensitivity * Time.deltaTime;
 
-            _rotX = Mathf.Clamp(_rotX, -_clampAngle, _clampAngle);
+            m_rotX = Mathf.Clamp(m_rotX, -m_clampAngle, m_clampAngle);
 
-            Quaternion localRotation = Quaternion.Euler(_rotX, _rotY, 0.0f);
+            Quaternion localRotation = Quaternion.Euler(m_rotX, m_rotY, 0.0f);
             transform.rotation = localRotation;
 
             // Snap camera behind player on middle click(?)
@@ -58,7 +58,7 @@ namespace Core.Player
             {
                 // Reset camera behind player
                 // NOT the rotation, just move the position
-                transform.rotation = _camFollowObj.transform.rotation;
+                transform.rotation = m_camFollowObj.transform.rotation;
             }
 
         }
@@ -71,10 +71,10 @@ namespace Core.Player
         void CameraUpdater()
         {
             // set the target object to follow
-            Transform target = _camFollowObj.transform;
+            Transform target = m_camFollowObj.transform;
 
             //move towards the game object that is the target
-            float step = _camMoveSpeed * Time.deltaTime;
+            float step = m_camMoveSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
         }
     }

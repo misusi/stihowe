@@ -7,23 +7,23 @@ namespace Core.Player
     public class PlayerController : MonoBehaviour
     {
         [Header("Movement")]
-        [SerializeField] float _walkSpeed = 6f;
-        [SerializeField] float _sprintSpeed = 9f;
-        [SerializeField] float _turnSmoothTime = 0.1f;
-        [SerializeField] Transform _cameraBaseTransform;
-        float _turnSmoothVel;
-        CharacterController _controller;
+        [SerializeField] float m_walkSpeed = 6f;
+        [SerializeField] float m_sprintSpeed = 9f;
+        [SerializeField] float m_turnSmoothTime = 0.1f;
+        [SerializeField] Transform m_cameraBaseTransform;
+        float m_turnSmoothVel;
+        CharacterController m_controller;
 
         [Header("Jumping")]
-        [SerializeField] float _jumpSpeed = 3f;
-        [SerializeField] float _gravity = 9.81f;
-        float _vSpeed = 0f;
-        private bool _canDoubleJump = false;
-        [SerializeField] float _doubleJumpMultiplier = 0.75f;
+        [SerializeField] float m_jumpSpeed = 3f;
+        [SerializeField] float m_gravity = 9.81f;
+        float m_vSpeed = 0f;
+        private bool m_canDoubleJump = false;
+        [SerializeField] float m_doubleJumpMultiplier = 0.75f;
 
         private void Start()
         {
-            _controller = GetComponent<CharacterController>();
+            m_controller = GetComponent<CharacterController>();
         }
         private void Update()
         {
@@ -31,8 +31,8 @@ namespace Core.Player
             Vector3 moveDir = DampenRotation(planarDirection);
             moveDir = ApplyVerticalForces(moveDir);
 
-            float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? _sprintSpeed : _walkSpeed;
-            _controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+            float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? m_sprintSpeed : m_walkSpeed;
+            m_controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
         }
 
         Vector3 ApplyHorizontalForces()
@@ -44,26 +44,26 @@ namespace Core.Player
 
         Vector3 ApplyVerticalForces(Vector3 dirVec)
         {
-            if (_controller.isGrounded)
+            if (m_controller.isGrounded)
             {
-                _canDoubleJump = true;
-                _vSpeed = 0f;
+                m_canDoubleJump = true;
+                m_vSpeed = 0f;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    _vSpeed = _jumpSpeed;
+                    m_vSpeed = m_jumpSpeed;
                 }
             }
             else
             {
-                if(Input.GetKeyDown(KeyCode.Space) && _canDoubleJump)
+                if(Input.GetKeyDown(KeyCode.Space) && m_canDoubleJump)
                 {
-                    _vSpeed = _jumpSpeed * _doubleJumpMultiplier;
-                    _canDoubleJump = false;
+                    m_vSpeed = m_jumpSpeed * m_doubleJumpMultiplier;
+                    m_canDoubleJump = false;
                 }
             }
 
-            _vSpeed -= _gravity * Time.deltaTime;
-            dirVec.y = _vSpeed;
+            m_vSpeed -= m_gravity * Time.deltaTime;
+            dirVec.y = m_vSpeed;
             return dirVec;
         }
 
@@ -72,9 +72,9 @@ namespace Core.Player
             Vector3 moveDir = Vector3.zero;
             if (dirVec.magnitude >= 0.1f)
             {
-                float targetAngle = Mathf.Atan2(dirVec.x, dirVec.z) * Mathf.Rad2Deg + _cameraBaseTransform.eulerAngles.y;
+                float targetAngle = Mathf.Atan2(dirVec.x, dirVec.z) * Mathf.Rad2Deg + m_cameraBaseTransform.eulerAngles.y;
                 // Smooth the rotation
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVel, _turnSmoothTime);
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref m_turnSmoothVel, m_turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
