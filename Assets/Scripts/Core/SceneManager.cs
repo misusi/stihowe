@@ -1,5 +1,4 @@
 using UnityEngine;
-using STIHOWE.Core;
 using STIHOWE.Bullets;
 
 namespace STIHOWE.Core

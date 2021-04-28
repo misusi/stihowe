@@ -18,32 +18,34 @@ namespace STIHOWE.Bullets
 
     public class BulletPool
     {
+        // TODO: Maybe make this array dynamic
         public Bullet[] bulletArray;
-        public List<int> activeBulletIndexes;
-        public readonly int capacity;
+        public List<int> availableBulletIndexes;
+        public int currentCapacity;
+        public int count = 0;
         public BulletPool(int size = 2000)
         {
-            capacity = size;
+            currentCapacity = size;
             bulletArray = new Bullet[size];
-            activeBulletIndexes = new List<int>();
+            availableBulletIndexes = new List<int>();
         }
-        bool IsFull()
+        public bool IsFull()
         {
-            return activeBulletIndexes.Count >= capacity;
+            return availableBulletIndexes.Count == 0;
         }
-        void Clear()
+        public void Clear()
         {
-            foreach (int index in activeBulletIndexes)
+            foreach (int index in availableBulletIndexes)
             {
                 bulletArray[index].gameObject.SetActive(false);
             }
         }
-        void Prune()
-        {
-        }
-        void Add()
-        {
-        }
+        public void Expand() { }
+        public void Shrink() { }
+        // Game object Bullet disable itself on collision, etc.
+        // No need to do that here w/ Add/Remove
+        public void Add(int indexToAdd) { count++; }
+        public void Remove(int indexToRemove) { count--; }
     }
 
     public class BulletManager : MonoBehaviour
@@ -51,6 +53,10 @@ namespace STIHOWE.Bullets
         public readonly int MAX_BULLETS;
         public static BulletManager Instance { get; private set; }
         public BulletPool BulletPool;
+        public int ActiveCount
+        {
+            get { return BulletPool.count; }
+        }
 
         public BulletManager(int size)
         {
@@ -64,20 +70,34 @@ namespace STIHOWE.Bullets
             else { Destroy(gameObject); }
             // // Cache references to all desired variables
         }
-        void Start()
-        {
-        }
 
-        public int GetAssignedBulletIndex()
+        // TODO: Async this?
+        // TODO: Thread this?
+        public int GetNextAvailableBulletIndex()
         {
-            // All bullets in use: Must start pruning
-            if (BulletPool.activeBulletIndexes.Count == MAX_BULLETS)
+            if (BulletPool.IsFull())
             {
-
+                // All bullets in use: Must start pruning
+                // Or just wait? Or just increase the size?
+                // mufucka mufasa
+                return -1;
+            }
+            else
+            {
+                int n = -1;
+                while (true)
+                // TODO: Another break condition where array is expanded
+                // after a certain number of attempts.
+                {
+                    n = Random.Range(0, MAX_BULLETS);
+                    if (BulletPool.bulletArray[n].m_IsDead)
+                    {
+                        break;
+                    }
+                }
+                return n;
             }
 
-            // mufucka mufasa
-            return -1;
         }
     }
 }

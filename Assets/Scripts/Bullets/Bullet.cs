@@ -16,9 +16,16 @@ namespace STIHOWE.Bullets
     {
         public string m_OwnerTag;
         public bool m_IsDead;
+        public int m_PoolIndex;
 
         // MovementType
         // enum...
+
+        public Bullet(string tag, int poolIndex)
+        {
+            m_OwnerTag = tag;
+            m_PoolIndex = poolIndex;
+        }
 
         private void Start()
         {
@@ -28,6 +35,7 @@ namespace STIHOWE.Bullets
         {
             // TODO: Play destroy bullet animation
             print(name + " collided with " + other.transform.name);
+
             Destroy(gameObject);
         }
 
