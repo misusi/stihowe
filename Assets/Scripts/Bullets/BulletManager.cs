@@ -16,35 +16,68 @@ using UnityEngine;
 namespace STIHOWE.Bullets
 {
 
-    public class BulletRequest
+    public class BulletPool
     {
-        Vector3 m_Location;
-        Quaternion m_Rotation;
+        public Bullet[] bulletArray;
+        public List<int> activeBulletIndexes;
+        public readonly int capacity;
+        public BulletPool(int size = 2000)
+        {
+            capacity = size;
+            bulletArray = new Bullet[size];
+            activeBulletIndexes = new List<int>();
+        }
+        bool IsFull()
+        {
+            return activeBulletIndexes.Count >= capacity;
+        }
+        void Clear()
+        {
+            foreach (int index in activeBulletIndexes)
+            {
+                bulletArray[index].gameObject.SetActive(false);
+            }
+        }
+        void Prune()
+        {
+        }
+        void Add()
+        {
+        }
     }
 
     public class BulletManager : MonoBehaviour
     {
-        public const uint MaxBullets = 2000;
+        public readonly int MAX_BULLETS;
         public static BulletManager Instance { get; private set; }
-        public Bullet[] m_BulletPool;
-        public List<uint> m_ActiveBulletIndexes;
+        public BulletPool BulletPool;
+
+        public BulletManager(int size)
+        {
+            MAX_BULLETS = size;
+            this.BulletPool = new BulletPool(size);
+        }
 
         void Awake()
         {
             if (Instance == null) { Instance = this; }
             else { Destroy(gameObject); }
             // // Cache references to all desired variables
-            // player = FindObjectOfType<Player>();
-            m_BulletPool = new Bullet[MaxBullets];
-            m_ActiveBulletIndexes = new List<uint>();
         }
         void Start()
         {
         }
 
-        public void Request(Bullet reqBullet)
+        public int GetAssignedBulletIndex()
         {
-            // InstantiateAt(...);
+            // All bullets in use: Must start pruning
+            if (BulletPool.activeBulletIndexes.Count == MAX_BULLETS)
+            {
+
+            }
+
+            // mufucka mufasa
+            return -1;
         }
     }
 }

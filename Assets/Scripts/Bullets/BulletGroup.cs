@@ -60,21 +60,23 @@ namespace STIHOWE.Combat.Projectiles
         [SerializeField] Bullet m_BulletPrefab;
         [SerializeField] BulletGroupType m_GroupType;
         [SerializeField] float m_Speed = 10f;
-        [SerializeField] public uint m_NumBullets;
+        [SerializeField] public int m_NumBullets;
         [SerializeField] float m_DamagePerBullet;
         Vector3 m_Direction;
         //Vector3 m_Origin;
+        List<int> m_AssignedBulletIndexes;
 
         private void Start()
         {
+            m_AssignedBulletIndexes = new List<int>();
             //m_origin = transform.position;
-            m_Direction = SceneManager.Instance.player.transform.forward;
+            m_Direction = SceneManager.Instance.Player.transform.forward;
             for (int i = 0; i < m_NumBullets; i++)
             {
                 Bullet newBullet = Instantiate(
                     m_BulletPrefab,
-                    SceneManager.Instance.player.m_firePoint.position,
-                    SceneManager.Instance.player.transform.rotation);
+                    SceneManager.Instance.Player.m_FirePoint.position,
+                    SceneManager.Instance.Player.transform.rotation);
                 newBullet.gameObject.layer = Layers.Bullets;
                 newBullet.transform.SetParent(transform);
             }

@@ -11,7 +11,7 @@ namespace STIHOWE.Core
         Transform m_PlayerTrans;
         void Start()
         {
-            m_PlayerTrans = SceneManager.Instance.player.transform;
+            m_PlayerTrans = SceneManager.Instance.Player.transform;
         }
 
         void Update() {

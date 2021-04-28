@@ -26,7 +26,7 @@ namespace STIHOWE.Core
         [Header("Attacking")]
         [HideInInspector] public Queue<BulletGroup> m_BulletPool;
         public Transform m_FirePoint;
-        public uint m_BulletPoolMaxSize = 500;
+        public int m_BulletPoolMaxSize = 500;
 
         private void Start()
         {
