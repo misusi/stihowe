@@ -9,14 +9,14 @@ namespace STIHOWE.Core
     public class CameraFollow : MonoBehaviour
     {
 
-        [SerializeField] float m_camMoveSpeed = 120.0f;
-        [SerializeField] GameObject m_camFollowObj;
-        [SerializeField] float m_clampAngle = 67.0f;
-        [SerializeField] float m_inputSensitivity = 150.0f;
-        [SerializeField] bool m_invertHoriz;
-        [SerializeField] bool m_invertVert;
-        float m_rotY = 0.0f;
-        float m_rotX = 0.0f;
+        [SerializeField] float m_CamMoveSpeed = 120.0f;
+        [SerializeField] GameObject m_CamFollowObj;
+        [SerializeField] float m_ClampAngle = 67.0f;
+        [SerializeField] float m_InputSensitivity = 150.0f;
+        [SerializeField] bool m_InvertHoriz;
+        [SerializeField] bool m_InvertVert;
+        float m_RotY = 0.0f;
+        float m_RotX = 0.0f;
 
 
 
@@ -24,8 +24,8 @@ namespace STIHOWE.Core
         void Start()
         {
             Vector3 rot = transform.localRotation.eulerAngles;
-            m_rotY = rot.y;
-            m_rotX = rot.x;
+            m_RotY = rot.y;
+            m_RotX = rot.x;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -42,15 +42,15 @@ namespace STIHOWE.Core
             float finalInputX = inputX + mouseX;
             float finalInputZ = inputZ + mouseY;
 
-            if (m_invertHoriz) finalInputX *= -1;
-            if (!m_invertVert) finalInputZ *= -1;
+            if (m_InvertHoriz) finalInputX *= -1;
+            if (!m_InvertVert) finalInputZ *= -1;
 
-            m_rotY += finalInputX * m_inputSensitivity * Time.deltaTime;
-            m_rotX += finalInputZ * m_inputSensitivity * Time.deltaTime;
+            m_RotY += finalInputX * m_InputSensitivity * Time.deltaTime;
+            m_RotX += finalInputZ * m_InputSensitivity * Time.deltaTime;
 
-            m_rotX = Mathf.Clamp(m_rotX, -m_clampAngle, m_clampAngle);
+            m_RotX = Mathf.Clamp(m_RotX, -m_ClampAngle, m_ClampAngle);
 
-            Quaternion localRotation = Quaternion.Euler(m_rotX, m_rotY, 0.0f);
+            Quaternion localRotation = Quaternion.Euler(m_RotX, m_RotY, 0.0f);
             transform.rotation = localRotation;
 
             // Snap camera behind player on middle click(?)
@@ -58,7 +58,7 @@ namespace STIHOWE.Core
             {
                 // Reset camera behind player
                 // NOT the rotation, just move the position
-                transform.rotation = m_camFollowObj.transform.rotation;
+                transform.rotation = m_CamFollowObj.transform.rotation;
             }
 
         }
@@ -71,10 +71,10 @@ namespace STIHOWE.Core
         void CameraUpdater()
         {
             // set the target object to follow
-            Transform target = m_camFollowObj.transform;
+            Transform target = m_CamFollowObj.transform;
 
             //move towards the game object that is the target
-            float step = m_camMoveSpeed * Time.deltaTime;
+            float step = m_CamMoveSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
         }
     }

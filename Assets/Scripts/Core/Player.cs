@@ -9,29 +9,29 @@ namespace STIHOWE.Core
     public class Player : MonoBehaviour
     {
         [Header("Movement")]
-        [SerializeField] float m_walkSpeed = 6f;
-        [SerializeField] float m_sprintSpeed = 9f;
-        [SerializeField] float m_turnSmoothTime = 0.1f;
-        [SerializeField] Transform m_cameraBaseTransform;
-        float m_turnSmoothVel;
-        CharacterController m_controller;
+        [SerializeField] float m_WalkSpeed = 6f;
+        [SerializeField] float m_SprintSpeed = 9f;
+        [SerializeField] float m_TurnSmoothTime = 0.1f;
+        //[SerializeField] Transform m_cameraBaseTransform;
+        float m_TurnSmoothVel;
+        CharacterController m_Controller;
 
         [Header("Jumping")]
-        [SerializeField] float m_jumpSpeed = 3f;
-        [SerializeField] float m_gravity = 9.81f;
-        float m_vSpeed = 0f;
-        private bool m_canDoubleJump = false;
-        [SerializeField] float m_doubleJumpMultiplier = 0.75f;
+        [SerializeField] float m_JumpSpeed = 3f;
+        [SerializeField] float m_Gravity = 9.81f;
+        float m_VSpeed = 0f;
+        private bool m_CanDoubleJump = false;
+        [SerializeField] float m_DoubleJumpMultiplier = 0.75f;
 
         [Header("Attacking")]
-        [HideInInspector] public Queue<BulletGroup> m_bulletPool;
-        public Transform m_firePoint;
-        public uint m_bulletPoolMaxSize = 500;
+        [HideInInspector] public Queue<BulletGroup> m_BulletPool;
+        public Transform m_FirePoint;
+        public uint m_BulletPoolMaxSize = 500;
 
         private void Start()
         {
-            m_controller = GetComponent<CharacterController>();
-            m_bulletPool = new Queue<BulletGroup>();
+            m_Controller = GetComponent<CharacterController>();
+            m_BulletPool = new Queue<BulletGroup>();
         }
         private void Update()
         {
@@ -39,8 +39,8 @@ namespace STIHOWE.Core
             Vector3 moveDir = DampenRotation(planarDirection);
             moveDir = ApplyVerticalForces(moveDir);
 
-            float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? m_sprintSpeed : m_walkSpeed;
-            m_controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+            float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? m_SprintSpeed : m_WalkSpeed;
+            m_Controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
         }
 
         Vector3 ApplyHorizontalForces()
@@ -52,26 +52,26 @@ namespace STIHOWE.Core
 
         Vector3 ApplyVerticalForces(Vector3 dirVec)
         {
-            if (m_controller.isGrounded)
+            if (m_Controller.isGrounded)
             {
-                m_canDoubleJump = true;
-                m_vSpeed = 0f;
+                m_CanDoubleJump = true;
+                m_VSpeed = 0f;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    m_vSpeed = m_jumpSpeed;
+                    m_VSpeed = m_JumpSpeed;
                 }
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.Space) && m_canDoubleJump)
+                if (Input.GetKeyDown(KeyCode.Space) && m_CanDoubleJump)
                 {
-                    m_vSpeed = m_jumpSpeed * m_doubleJumpMultiplier;
-                    m_canDoubleJump = false;
+                    m_VSpeed = m_JumpSpeed * m_DoubleJumpMultiplier;
+                    m_CanDoubleJump = false;
                 }
             }
 
-            m_vSpeed -= m_gravity * Time.deltaTime;
-            dirVec.y = m_vSpeed;
+            m_VSpeed -= m_Gravity * Time.deltaTime;
+            dirVec.y = m_VSpeed;
             return dirVec;
         }
 
@@ -80,9 +80,9 @@ namespace STIHOWE.Core
             Vector3 moveDir = Vector3.zero;
             if (dirVec.magnitude >= 0.1f)
             {
-                float targetAngle = Mathf.Atan2(dirVec.x, dirVec.z) * Mathf.Rad2Deg + m_cameraBaseTransform.eulerAngles.y;
+                float targetAngle = Mathf.Atan2(dirVec.x, dirVec.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
                 // Smooth the rotation
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref m_turnSmoothVel, m_turnSmoothTime);
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref m_TurnSmoothVel, m_TurnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;

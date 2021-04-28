@@ -40,13 +40,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4837234569627100029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b099db6b752ff845a2bc3233a538500, type: 3}
+  m_Script: {fileID: 11500000, guid: aade85aa686060e46aa5ecb2444fd9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 2532321010041491841, guid: 1f5c4250fa946874699a33a99847d560, type: 3}
+  m_groupType: 5
   m_speed: 10
-  m_numBullets: 3
+  m_numBullets: 1
   m_damagePerBullet: 0
-  m_radius: 1.5
-  m_outwardSpeed: 0.5
-  m_rotationSpeed: 2.5
+  m_forkAngle: 0
+  m_screwRotateSpeed: 0
+  m_SineAmplitude: 0
+  m_triangleHeight: 2
+  m_triangleAngle: 30
