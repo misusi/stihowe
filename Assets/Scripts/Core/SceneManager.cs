@@ -14,6 +14,7 @@ namespace STIHOWE.Core
         {
             if (Instance == null) { Instance = this; }
             else { Destroy(gameObject); }
+
             // Cache references to all desired variables
             Player = FindObjectOfType<Player>();
             BulletManager = new BulletManager(BulletManager.MAX_BULLETS);
