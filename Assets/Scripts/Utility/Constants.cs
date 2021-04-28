@@ -20,6 +20,6 @@ namespace STIHOWE.Constants
     {
         //public static readonly int player = LayerMask.NameToLayer("Player");
         //public static readonly int enemy = LayerMask.NameToLayer("Enemy");
-        public static readonly int bullets = LayerMask.NameToLayer("Bullets");
+        public static readonly int Bullets = LayerMask.NameToLayer("Bullets");
     }
 }

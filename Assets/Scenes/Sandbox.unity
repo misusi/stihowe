@@ -123,11 +123,73 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &545877165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4972311238252797878, guid: 9839d7a391081424bb384066bce00799, type: 3}
+  m_PrefabInstance: {fileID: 7415849461867854415}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &545877167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545877165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37cd9b05cec6964c908dbca4e0b2366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &787515040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8000624014043552435, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
+  m_PrefabInstance: {fileID: 8000624014347115370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &787515041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787515040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b3192f179251545a80f767d3fab8e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_camMoveSpeed: 120
+  m_camFollowObj: {fileID: 0}
+  m_clampAngle: 67
+  m_inputSensitivity: 150
+  m_invertHoriz: 0
+  m_invertVert: 0
 --- !u!4 &1201650093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8000624014043552432, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
   m_PrefabInstance: {fileID: 8000624014347115370}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1484260180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8000624012882871398, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
+  m_PrefabInstance: {fileID: 8000624014347115370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1484260181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484260180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d98310c959a1b34081483624fd40a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_minDistance: 1
+  m_maxDistance: 3
+  m_movementSmooth: 5
+  m_dollyDirAdjusted: {x: 0, y: 0, z: 0}
+  m_distance: 0
 --- !u!1001 &2861061266098531560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,6 +258,18 @@ PrefabInstance:
       propertyPath: m_cameraBaseTransform
       value: 
       objectReference: {fileID: 1201650093}
+    - target: {fileID: 3023388872998658677, guid: 9839d7a391081424bb384066bce00799, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3023388872998658677, guid: 9839d7a391081424bb384066bce00799, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3023388872998658677, guid: 9839d7a391081424bb384066bce00799, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3925353727243542631, guid: 9839d7a391081424bb384066bce00799, type: 3}
       propertyPath: m_Name
       value: Player
@@ -244,7 +318,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4643253855586459040, guid: 9839d7a391081424bb384066bce00799, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756331014518486888, guid: 9839d7a391081424bb384066bce00799, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1371829924048309325, guid: 9839d7a391081424bb384066bce00799, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9839d7a391081424bb384066bce00799, type: 3}
 --- !u!1001 &8000624014347115370
 PrefabInstance:
@@ -305,7 +388,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraBase
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1774624528, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
+    - {fileID: 8000624014043552433, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8f680fa1521e56b45bd82bb82c6219dd, type: 3}
 --- !u!1 &8494874970855338239 stripped
 GameObject:

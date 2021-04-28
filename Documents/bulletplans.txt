@@ -1,0 +1,3 @@
+Bullet Pattern: Can spawn bullet groups only. If want individual bullets, create bullet group of one.
+	BulletGroup: Has predetermined amt of bullets, and move pattern
+		Bullet: Has bullet prefab, destroy()/oncollision(). That's it.

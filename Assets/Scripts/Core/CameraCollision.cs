@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace STIHOWE.Core.Player
+namespace STIHOWE.Core
 {
 
     public class CameraCollision : MonoBehaviour

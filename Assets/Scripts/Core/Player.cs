@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 using STIHOWE.Combat.Projectiles;
+using System.Collections.Generic;
 
-namespace STIHOWE.Core.Player
+namespace STIHOWE.Core
 {
 
-    public class PlayerController : MonoBehaviour
+    public class Player : MonoBehaviour
     {
         [Header("Movement")]
         [SerializeField] float m_walkSpeed = 6f;
@@ -22,9 +23,15 @@ namespace STIHOWE.Core.Player
         private bool m_canDoubleJump = false;
         [SerializeField] float m_doubleJumpMultiplier = 0.75f;
 
+        [Header("Attacking")]
+        [HideInInspector] public Queue<BulletGroup> m_bulletPool;
+        public Transform m_firePoint;
+        public uint m_bulletPoolMaxSize = 500;
+
         private void Start()
         {
             m_controller = GetComponent<CharacterController>();
+            m_bulletPool = new Queue<BulletGroup>();
         }
         private void Update()
         {
@@ -34,12 +41,6 @@ namespace STIHOWE.Core.Player
 
             float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? m_sprintSpeed : m_walkSpeed;
             m_controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
-
-            // TODO: Remove this.
-            if (Input.GetMouseButtonDown(0))
-            {
-                GetComponent<BulletSpawner>().Spawn();
-            }
         }
 
         Vector3 ApplyHorizontalForces()
@@ -89,6 +90,7 @@ namespace STIHOWE.Core.Player
             return moveDir;
         }
     }
+
 }
 
 // BUGFIX:
