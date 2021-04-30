@@ -85,19 +85,22 @@ namespace STIHOWE.Bullets
             else
             {
                 int n = -1;
+                //int maxAttempts = 5;
+                //int attempts = 0;
+                //while (attempts < maxAttempts)
                 while (true)
                 // TODO: Another break condition where array is expanded
                 // after a certain number of attempts.
                 {
                     n = Random.Range(0, MAX_BULLETS);
-                    if (BulletPool.bulletArray[n].m_IsDead)
+                    if (BulletPool.bulletArray[n].IsDead())
                     {
                         break;
                     }
+
                 }
                 return n;
             }
-
         }
     }
 }

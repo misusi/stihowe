@@ -73,12 +73,12 @@ namespace STIHOWE.Combat.Projectiles
             m_Direction = SceneManager.Instance.Player.transform.forward;
             for (int i = 0; i < m_NumBullets; i++)
             {
-                Bullet newBullet = Instantiate(
-                    m_BulletPrefab,
-                    SceneManager.Instance.Player.m_FirePoint.position,
-                    SceneManager.Instance.Player.transform.rotation);
-                newBullet.gameObject.layer = Layers.Bullets;
-                newBullet.transform.SetParent(transform);
+                //Bullet newBullet = Instantiate(
+                //    m_BulletPrefab,
+                //    SceneManager.Instance.Player.m_FirePoint.position,
+                //    SceneManager.Instance.Player.transform.rotation);
+                //newBullet.gameObject.layer = Layers.Bullets;
+                //newBullet.transform.SetParent(transform);
             }
         }
 

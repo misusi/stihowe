@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # Asset Packs
 /[Aa]ssets/AssetPacks/
+
+# VS Config
+.vsconfig

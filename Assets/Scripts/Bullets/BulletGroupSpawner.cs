@@ -10,10 +10,10 @@ namespace STIHOWE.Combat.Projectiles
         [SerializeField] BulletGroup m_BulletGroup;
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Instantiate(m_BulletGroup);
-            }
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    Instantiate(m_BulletGroup);
+            //}
         }
 
     }
