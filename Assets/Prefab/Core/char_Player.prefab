@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3925353727243542648}
   - component: {fileID: 1371829924048309330}
-  - component: {fileID: 1371829924048309325}
+  - component: {fileID: 134287004}
   m_Layer: 0
   m_Name: char_Player
   m_TagString: Player
@@ -83,7 +83,7 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.85, z: 0}
---- !u!114 &1371829924048309325
+--- !u!114 &134287004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,15 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ace690f897a4f94395f31b5ee61a9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_walkSpeed: 6
-  m_sprintSpeed: 9
-  m_turnSmoothTime: 0.1
-  m_cameraBaseTransform: {fileID: 0}
-  m_jumpSpeed: 3
-  m_gravity: 9.81
-  m_doubleJumpMultiplier: 0.75
-  m_firePoint: {fileID: 3023388872998658677}
-  m_bulletPoolMaxSize: 500
+  m_WalkSpeed: 6
+  m_SprintSpeed: 9
+  m_TurnSmoothTime: 0.1
+  m_JumpSpeed: 3
+  m_Gravity: 9.81
+  m_DoubleJumpMultiplier: 0.75
 --- !u!1 &4643253855586459040
 GameObject:
   m_ObjectHideFlags: 0

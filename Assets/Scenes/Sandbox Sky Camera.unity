@@ -123,29 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &134287003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3925353727243542631, guid: 9839d7a391081424bb384066bce00799, type: 3}
-  m_PrefabInstance: {fileID: 343941490}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &134287004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134287003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ace690f897a4f94395f31b5ee61a9fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_WalkSpeed: 6
-  m_SprintSpeed: 9
-  m_TurnSmoothTime: 0.1
-  m_JumpSpeed: 3
-  m_Gravity: 9.81
-  m_DoubleJumpMultiplier: 0.75
 --- !u!4 &134287005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3925353727243542648, guid: 9839d7a391081424bb384066bce00799, type: 3}
@@ -162,6 +139,7 @@ GameObject:
   - component: {fileID: 146177713}
   - component: {fileID: 146177712}
   - component: {fileID: 146177714}
+  - component: {fileID: 146177715}
   m_Layer: 0
   m_Name: CM_ThirdPerson
   m_TagString: Untagged
@@ -224,8 +202,8 @@ MonoBehaviour:
       m_LegacyVelocityFilterStrength: -1
   m_YAxisRecentering:
     m_enabled: 0
-    m_WaitTime: 1
-    m_RecenteringTime: 2
+    m_WaitTime: 0
+    m_RecenteringTime: 0.25
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
@@ -252,8 +230,8 @@ MonoBehaviour:
     m_Bias: 0
   m_RecenterToTargetHeading:
     m_enabled: 0
-    m_WaitTime: 1
-    m_RecenteringTime: 2
+    m_WaitTime: 0
+    m_RecenteringTime: 0.25
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_BindingMode: 4
@@ -317,6 +295,18 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &146177715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146177711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac2dd0f3f540644c848ba0936aa698f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &147051202
 GameObject:
   m_ObjectHideFlags: 3
@@ -383,7 +373,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147051202}
-  m_LocalRotation: {x: 0.042942163, y: 0.000000017190507, z: -7.388791e-10, w: 0.99907756}
+  m_LocalRotation: {x: 0.042942166, y: -0.000000017190514, z: 7.3887946e-10, w: 0.99907756}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -398,10 +388,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1371829924048309325, guid: 9839d7a391081424bb384066bce00799, type: 3}
-      propertyPath: m_cameraBaseTransform
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3925353727243542631, guid: 9839d7a391081424bb384066bce00799, type: 3}
       propertyPath: m_Name
       value: Player
@@ -450,8 +436,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1371829924048309325, guid: 9839d7a391081424bb384066bce00799, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9839d7a391081424bb384066bce00799, type: 3}
 --- !u!1 &440144308
 GameObject:
@@ -519,7 +504,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440144308}
-  m_LocalRotation: {x: 0.061107785, y: 0.000000017320057, z: -0.0000000010603718, w: 0.9981312}
+  m_LocalRotation: {x: 0.061107762, y: -0.000000017283538, z: 0.0000000010581356, w: 0.9981312}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -539,7 +524,7 @@ GameObject:
   - component: {fileID: 650413152}
   - component: {fileID: 650413151}
   m_Layer: 0
-  m_Name: Terrain (1)
+  m_Name: SimpleTerrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,7 +865,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774624524}
-  m_LocalRotation: {x: 0.04294216, y: 0.00000003438102, z: -0.0000000014777584, w: 0.99907756}
+  m_LocalRotation: {x: 0.042942163, y: -0.00000003438102, z: 0.0000000014777585, w: 0.99907756}
   m_LocalPosition: {x: 0, y: 2.5, z: -8.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
