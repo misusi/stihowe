@@ -16,7 +16,7 @@ namespace STIHOWE.Core
 
             // Cache references to all desired variables
             Player = FindObjectOfType<Player>();
-            BulletManager = new BulletManager(2000);
+            BulletManager = GetComponent<BulletManager>();
         }
     }
 }
