@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1389236368711629297}
-  - component: {fileID: 2561848329997929340}
   m_Layer: 0
   m_Name: bulletGroup_Corkscrew
   m_TagString: Untagged
@@ -31,25 +30,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2561848329997929340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4837234569627100029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aade85aa686060e46aa5ecb2444fd9c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_bulletPrefab: {fileID: 2532321010041491841, guid: 1f5c4250fa946874699a33a99847d560, type: 3}
-  m_groupType: 5
-  m_speed: 10
-  m_numBullets: 1
-  m_damagePerBullet: 0
-  m_forkAngle: 0
-  m_screwRotateSpeed: 0
-  m_SineAmplitude: 0
-  m_triangleHeight: 2
-  m_triangleAngle: 30

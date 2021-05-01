@@ -6,7 +6,8 @@ namespace STIHOWE.Core
     public class SceneManager : MonoBehaviour
     {
         public Player Player;
-        public BulletManager BulletManager;
+        //public BulletManager BulletManager;
+        public ObjectPooler BulletPool;
         public static SceneManager Instance { get; private set; }
 
         void Awake()
@@ -16,7 +17,7 @@ namespace STIHOWE.Core
 
             // Cache references to all desired variables
             Player = FindObjectOfType<Player>();
-            BulletManager = GetComponent<BulletManager>();
+            //BulletManager = GetComponent<BulletManager>();
         }
     }
 }

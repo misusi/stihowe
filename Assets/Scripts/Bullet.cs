@@ -14,15 +14,19 @@ namespace STIHOWE.Bullets
 	// trajectory
 	public class Bullet : MonoBehaviour
 	{
-		bool m_IsDead = true;
 		string m_OwnerTag;
 		int m_PoolIndex = -1;
-
-		public bool IsDead
+		ParticleSystem m_ParticleSystem;
+		TrailRenderer m_TrailRenderer;
+		void OnEnable()
 		{
-			get { return m_IsDead; }
-			set { m_IsDead = value; }
+
 		}
+		void OnDisable()
+		{
+
+		}
+
 		public string OwnerTag
 		{
 			get { return m_OwnerTag; }
@@ -32,6 +36,16 @@ namespace STIHOWE.Bullets
 		{
 			get { return m_PoolIndex; }
 			set { m_PoolIndex = value; }
+		}
+
+		public void WarpTo(Vector3 toPos, Quaternion toRot)
+		{
+			transform.position = toPos;
+			transform.rotation = toRot;
+		}
+		public void SetParticleSystem(ParticleSystem ps)
+		{
+
 		}
 
 		private void OnCollisionEnter(Collision other)

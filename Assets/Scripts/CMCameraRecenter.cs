@@ -5,6 +5,7 @@ public class CMCameraRecenter : MonoBehaviour
 {
 	CinemachineFreeLook m_CMFreeLookCam;
 	float m_RecenterTime;
+	float m_THENUMBERTHATMAGICALLYMAKESTHECINEMACHINERECENTERINGTIMEEQUALMINE;
 	float m_TimeSinceRecenter = 0f;
 	bool m_CurrentlyRecentering = false;
 	private void Start()
@@ -13,7 +14,8 @@ public class CMCameraRecenter : MonoBehaviour
 		// TODO: Is there really no built-in way to do this through
 		// Cinemachine?
 		m_RecenterTime =
-			4 * m_CMFreeLookCam.m_YAxisRecentering.m_RecenteringTime;
+			m_THENUMBERTHATMAGICALLYMAKESTHECINEMACHINERECENTERINGTIMEEQUALMINE
+			* m_CMFreeLookCam.m_YAxisRecentering.m_RecenteringTime;
 	}
 	void Update()
 	{

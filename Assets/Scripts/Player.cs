@@ -1,5 +1,4 @@
 using UnityEngine;
-using STIHOWE.Combat.Projectiles;
 using System.Collections.Generic;
 
 using Cinemachine;
